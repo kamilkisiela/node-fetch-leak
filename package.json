@@ -1,0 +1,8 @@
+{
+  "name": "node-fetch",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "debug": "node --inspect-brk index.js"
+  }
+}
