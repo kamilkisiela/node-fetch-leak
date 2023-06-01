@@ -9,6 +9,13 @@
 1. Run first set of requests: `k6 run k6.js --vus 5 --duration 360s` and make the heap snapshot
 1. Run second set of requests: `k6 run k6.js --vus 5 --duration 360s` and make the heap snapshot
 
+# Summary
+
+| Requests made | v20.2 + fetch | v20.2 + undici v5.22.1 | v18.16 + fetch | v18.16 + undici v5.22.1 |
+| ------------- | ------------- | ---------------------- | -------------- | ----------------------- |
+| ~300k         | 16MB          | 19MB                   | 9MB            | 11MB                    |
+| ~600k         | 23MB          | 26MB                   | 9MB            | 11MB                    |
+
 # Node v20.2
 
 ## native fetch
