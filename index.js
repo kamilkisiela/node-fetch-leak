@@ -1,6 +1,6 @@
 import http from "node:http";
 
-console.log(`Node version: ${process.version}`);
+console.log(`Node version: ${process.version} (native fetch)`);
 
 const server = http.createServer(function (_, res) {
   fetch("http://localhost:58080/status/200", {

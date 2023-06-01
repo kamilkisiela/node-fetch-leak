@@ -2,7 +2,12 @@
   "name": "node-fetch",
   "type": "module",
   "scripts": {
-    "start": "node index.js",
-    "debug": "node --inspect-brk index.js"
+    "start:native": "node index.js",
+    "start:undici": "node index-undici.js",
+    "debug:native": "node --inspect-brk index.js",
+    "debug:undici": "node --inspect-brk index-undici.js"
+  },
+  "dependencies": {
+    "undici": "5.22.1"
   }
 }
