@@ -13,4 +13,11 @@ const server = http.createServer(function (_, res) {
   });
 });
 
-server.listen(3000);
+server.listen(3000, (error, address) => {
+  if (error) {
+    console.error(error);
+    process.exit(1);
+  }
+  // eslint-disable-next-line no-console
+  console.log(`Server is running... Ready for K6! - ${address}`);
+});

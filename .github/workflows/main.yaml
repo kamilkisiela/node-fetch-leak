@@ -1,3 +1,4 @@
+name: CI
 on:
   workflow_dispatch:
     inputs:
@@ -11,6 +12,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    name: "Load test --vus=${{ github.event.inputs.vus }} --max-old-space-size=${{ github.event.inputs.memory }}"
     steps:
       - uses: actions/checkout@v3
       
@@ -27,13 +29,19 @@ jobs:
           sudo apt-get update
           sudo apt-get install k6=0.37.0
 
+
+      - name: Run httpbin
+        run: |
+          docker run --rm -p "58080:8080" mccutchen/go-httpbin &
+          npx wait-on http-get://localhost:58080/status/200
+
       - name: Run server
         run: |
           node --max-old-space-size=${{ github.event.inputs.memory }} index.js &
-          npx wait-on tcp:3000
+          npx wait-on http-get://localhost:3000
 
       - name: Load test
         run:
-          k6 -e ENDPOINT_HOSTNAME="[::1]" run k6.js --vus ${{ github.event.inputs.vus }} --duration 3h
+          k6 -e ENDPOINT_HOSTNAME="[::1]" run k6.js
     
     
