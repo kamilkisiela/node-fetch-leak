@@ -30,7 +30,7 @@ jobs:
       - name: Run server
         run: |
           node --max-old-space-size=${{ github.event.inputs.memory }} index.js &
-          pnpm wait-on tcp:3000
+          npx wait-on tcp:3000
 
       - name: Load test
         run:
