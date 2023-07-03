@@ -34,6 +34,6 @@ jobs:
 
       - name: Load test
         run:
-          k6 run k6.js --vus ${{ github.event.inputs.vus }} --duration 3h
+          k6 -e ENDPOINT_HOSTNAME="[::1]" run k6.js --vus ${{ github.event.inputs.vus }} --duration 3h
     
     
